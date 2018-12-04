@@ -1,0 +1,27 @@
+target_default: 2_plot
+
+packages:
+  - dplyr
+  - tidyr
+
+sources:
+  - 2_plot/src/plot_frames.R
+
+targets:
+
+  2_plot:
+    depends:
+      - 2_plot/tmp/
+
+  2_plot/out/:
+    command: plot_frames(
+      out_file = target_name,
+      in_file='1_data/in/raw_data.csv')
+
+# need to make a task table for generating frames
+# example of one frame
+  2_plot/tmp/frame_1:
+    command: plot_ice_frames(
+      out_file = target_name,
+      ice_file = '1_data/out/compiled_ice.rds',
+      winter_year = I('1989'))

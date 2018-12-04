@@ -1,0 +1,6 @@
+target_default: 1_data
+
+include:
+  - 1_data.yml
+
+targets:

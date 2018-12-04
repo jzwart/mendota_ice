@@ -1,0 +1,19 @@
+target_default: 1_data
+
+packages:
+  - dplyr
+  - tidyr
+
+sources:
+  - 1_data/src/compile_ice_data.R
+
+targets:
+
+  1_data:
+    depends:
+      - 1_data/out/compiled_ice.rds
+
+  1_data/out/compiled_ice.rds:
+    command: compile_ice_data(
+      out_file = target_name,
+      in_file='1_data/in/raw_data.csv')
