@@ -5,18 +5,36 @@ packages:
   - tidyr
 
 sources:
-  - 2_plot/src/plot_frames.R
+  - 2_plot/src/plot_ice_frame.R
+  - 2_plot/src/define_plot_tasks.R
+  - 2_plot/src/create_gif.R
 
 targets:
 
   2_plot:
     depends:
-      - 2_plot/tmp/
+      - 2_frame_tasks.yml
 
-  2_plot/out/:
-    command: plot_frames(
-      out_file = target_name,
-      in_file='1_data/in/raw_data.csv')
+  tasks:
+    command: task_names(
+      ice_file = '1_data/out/compiled_ice.rds')
+
+  task_plan:
+    command: list_tasks(
+      ice_file = '1_data/out/compiled_ice.rds')
+
+  2_frame_tasks.yml:
+    command: create_plot_frame_makefile(makefile=target_name, task_plan=task_plan, remake_file=I('2_plot.yml'))
+
+#  2_plot_all:
+ #   depends: 2_frame_tasks.yml
+ #   command: scmake(I('2_frame_tasks'), remake_file='2_frame_tasks.yml')
+
+  2_plot/out/mendota_ice.gif:
+    command: create_gif(
+      gif_file = target_name,
+      frame_delay = 10,
+      task_names = tasks)
 
 # need to make a task table for generating frames
 # example of one frame
