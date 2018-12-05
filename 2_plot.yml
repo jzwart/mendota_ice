@@ -31,6 +31,7 @@ targets:
  #   command: scmake(I('2_frame_tasks'), remake_file='2_frame_tasks.yml')
 
   2_plot/out/mendota_ice.gif:
+    depends: 2_frame_tasks.yml
     command: create_gif(
       gif_file = target_name,
       frame_delay = 10,
@@ -38,7 +39,7 @@ targets:
 
 # need to make a task table for generating frames
 # example of one frame
-  2_plot/tmp/frame_1:
+  2_plot/out/frame_1:
     command: plot_ice_frames(
       out_file = target_name,
       ice_file = '1_data/out/compiled_ice.rds',
