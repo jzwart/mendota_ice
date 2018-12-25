@@ -13,6 +13,7 @@ packages:
   - dplyr
   - ggplot2
   - ggExtra
+  - cowplot
 
 sources:
   - 2_plot/src/plot_ice_frame.R

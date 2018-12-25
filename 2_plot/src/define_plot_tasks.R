@@ -52,7 +52,7 @@ create_plot_frame_makefile <- function(makefile, task_plan, remake_file) {
     makefile=makefile,
     task_plan=task_plan,
     include=remake_file,
-    packages=c('scipiper', 'tidyr', 'dplyr', 'ggplot2', 'ggExtra'),
+    packages=c('scipiper', 'tidyr', 'dplyr', 'ggplot2', 'ggExtra', 'cowplot'),
     sources=c(
       '2_plot/src/plot_ice_frame.R'),
     ind_complete = F)

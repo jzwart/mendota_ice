@@ -26,21 +26,11 @@ targets:
   2_frame_tasks.yml:
     command: create_plot_frame_makefile(makefile=target_name, task_plan=task_plan, remake_file=I('2_plot.yml'))
 
-#  2_plot_all:
- #   depends: 2_frame_tasks.yml
- #   command: scmake(I('2_frame_tasks'), remake_file='2_frame_tasks.yml')
-
   2_plot/out/mendota_ice.gif:
     depends: 2_frame_tasks.yml
     command: create_gif(
       gif_file = target_name,
       frame_delay = 10,
+      final_delay = 600,
       task_names = tasks)
 
-# need to make a task table for generating frames
-# example of one frame
-  2_plot/out/frame_1:
-    command: plot_ice_frames(
-      out_file = target_name,
-      ice_file = '1_data/out/compiled_ice.rds',
-      winter_year = I('1989'))
